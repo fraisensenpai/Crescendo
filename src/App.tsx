@@ -11,54 +11,48 @@ import { Contact } from './components/Contact.tsx';
 import { Footer } from './components/Footer.tsx';
 import { ProjectType } from './types.ts';
 
+/** Hizmet ve proje CTA'larından gelen metni iletişim formundaki proje türüne eşler. */
+const PROJECT_TYPE_MAP: Record<string, ProjectType> = {
+  'Web Sitesi': 'Web Sitesi',
+  'Özel Yazılım': 'Özel Yazılım',
+  'Dijital Ürün': 'Dijital Ürün',
+  'UI/UX': 'UI/UX',
+  'Education Platform': 'Dijital Ürün',
+  'Corporate / Internal Platform': 'Özel Yazılım',
+  'Interactive Web Experience': 'Web Sitesi',
+};
+
+const resolveProjectType = (source: string): ProjectType => PROJECT_TYPE_MAP[source] ?? 'Dijital Ürün';
+
 export default function App() {
   const [selectedProjectType, setSelectedProjectType] = useState<ProjectType>('Web Sitesi');
 
   const scrollToContact = (projectType?: string) => {
     if (projectType) {
-      if (projectType.includes('Web')) setSelectedProjectType('Web Sitesi');
-      else if (projectType.includes('Yazılım') || projectType.includes('Operasyon')) setSelectedProjectType('Özel Yazılım');
-      else if (projectType.includes('SaaS') || projectType.includes('Ürün')) setSelectedProjectType('Dijital Ürün');
-      else if (projectType.includes('UI') || projectType.includes('Tasarım')) setSelectedProjectType('UI/UX');
-      else setSelectedProjectType('Web Sitesi');
+      setSelectedProjectType(resolveProjectType(projectType));
     }
-    const contactSection = document.getElementById('iletisim');
-    contactSection?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('iletisim')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <div className="min-h-screen bg-[#171D27] text-[#F8F7F2] relative selection:bg-[#EDB96F] selection:text-[#2B3446]">
-      {/* Navigation Header */}
+      <a href="#main-content" className="skip-to-content">
+        İçeriğe geç
+      </a>
+
       <Navbar onOpenContact={() => scrollToContact()} />
 
-      {/* Main Content Sections */}
-      <main>
-        {/* 01 — HERO */}
+      <main id="main-content">
         <Hero onOpenContact={() => scrollToContact()} />
-
-        {/* 02 — SERVICES */}
         <Services onSelectService={(service) => scrollToContact(service)} />
-
-        {/* 03 — SELECTED WORK */}
         <Projects onStartProject={(category) => scrollToContact(category)} />
-
-        {/* 04 — PROCESS */}
         <Process />
-
-        {/* 05 — WHY CRESCENDO */}
         <WhyCrescendo />
-
-        {/* 06 — TECHNOLOGY */}
         <Technology />
-
-        {/* 07 — FINAL CTA */}
         <FinalCTA onOpenContact={() => scrollToContact()} />
-
-        {/* 08 — CONTACT */}
         <Contact initialProjectType={selectedProjectType} />
       </main>
 
-      {/* 09 — FOOTER */}
       <Footer />
     </div>
   );

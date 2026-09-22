@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
-import { Copy, Check, Send, Terminal, AlertCircle, Loader2 } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Copy, Check, Send, AlertCircle, Loader2 } from 'lucide-react';
 import { STUDIO_CONFIG, PROJECT_TYPES, BUDGET_RANGES } from '../data/studioData.ts';
 import { ContactFormData, ProjectType } from '../types.ts';
+import { SectionHeader } from './SectionHeader.tsx';
 
 interface ContactProps {
   initialProjectType?: ProjectType;
 }
+
+const FIELD_CLASS =
+  'w-full px-3.5 py-2.5 bg-[#171D27] border border-[#3D4A63] focus:border-[#EDB96F] text-sm text-[#F8F7F2] outline-none transition-colors placeholder:text-[#8A97A8]';
 
 export const Contact: React.FC<ContactProps> = ({ initialProjectType }) => {
   const [formData, setFormData] = useState<ContactFormData>({
@@ -23,13 +27,20 @@ export const Contact: React.FC<ContactProps> = ({ initialProjectType }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Hizmet/proje CTA'larından gelen proje türünü forma yansıt
+  useEffect(() => {
+    if (initialProjectType) {
+      setFormData((prev) => ({ ...prev, projectType: initialProjectType }));
+    }
+  }, [initialProjectType]);
+
   const handleCopyEmail = async () => {
     try {
       await navigator.clipboard.writeText(STUDIO_CONFIG.email);
       setCopiedEmail(true);
       setTimeout(() => setCopiedEmail(false), 2500);
     } catch (err) {
-      console.error('Clipboard copy failed', err);
+      console.error('E-posta kopyalanamadı', err);
     }
   };
 
@@ -69,7 +80,7 @@ Bu mesaj crescendosoftware.com üzerinden oluşturulmuştur.`
     const projectDetails = formData.projectDetails.trim();
 
     if (!fullName || !email || !projectDetails) {
-      setErrorMessage('Lütfen Ad Soyad, E-posta ve Proje Açıklaması alanlarını doldurunuz.');
+      setErrorMessage('Lütfen ad soyad, e-posta ve proje açıklaması alanlarını doldurun.');
       return;
     }
 
@@ -122,221 +133,205 @@ Bu mesaj crescendosoftware.com üzerinden oluşturulmuştur.`
   };
 
   return (
-    <section
-      id="iletisim"
-      className="relative py-24 sm:py-32 border-b border-[#3D4A63]/50 bg-[#141A23] overflow-hidden"
-    >
-      {/* Background System: Dot Matrix */}
-      <div className="absolute inset-0 bg-dot-matrix opacity-35 pointer-events-none"></div>
+    <section id="iletisim" className="relative py-24 sm:py-32 bg-[#141A23]">
+      <div className="absolute inset-0 bg-dot-matrix opacity-30 pointer-events-none" aria-hidden="true"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#3D4A63]/60">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-mono text-[#EDB96F] mb-3">
-              <span className="w-2 h-0.5 bg-[#EDB96F]"></span>
-              <span>08 // İLETİŞİM & PROJE BAŞVURUSU</span>
-            </div>
-            <h2 className="font-['Syne'] text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#F8F7F2] tracking-tight">
-              Projenizi konuşmaya <br className="hidden sm:inline" />
-              <span className="text-[#EDB96F]">bugün başlayalım.</span>
-            </h2>
-          </div>
+        <SectionHeader
+          eyebrow="08 — İletişim"
+          title={
+            <>
+              Projenizi <span className="text-[#EDB96F]">konuşalım.</span>
+            </>
+          }
+          note="Formu doldurun ya da doğrudan e-posta gönderin. İkisinde de mesajı yazan ekibiz."
+        />
 
-          <div className="mt-4 md:mt-0 font-mono text-xs text-[#9BA7B7] max-w-sm leading-relaxed">
-            Formu doldurarak projenizin ihtiyaçlarını iletebilir veya doğrudan e-posta adresimize yazabilirsiniz.
-          </div>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
 
-        {/* 2-Column Layout: Direct Contact Info Left, Clear Form Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
-          {/* Left Column: Direct Studio Contact Channels */}
-          <div className="lg:col-span-5 space-y-6">
-            
-            {/* Direct Email Card */}
-            <div className="bg-[#1A202C] border-2 border-[#3D4A63] p-6 sm:p-7 shadow-xl">
-              <span className="font-mono text-xs text-[#EDB96F] uppercase tracking-wider block mb-2">
-                DOĞRUDAN İLETİŞİM
-              </span>
-              <h3 className="font-['Syne'] text-xl font-bold text-[#F8F7F2] mb-3">
-                Resmi Stüdyo E-posta Adresimiz
+          {/* İletişim bilgileri */}
+          <div className="lg:col-span-5 min-w-0 space-y-6">
+
+            <div className="bg-[#1A202C] border border-[#3D4A63] p-6 sm:p-7">
+              <h3 className="font-['Syne'] text-xl font-bold text-[#F8F7F2] mb-2">
+                Bize doğrudan yazın
               </h3>
-              <p className="text-xs text-[#9BA7B7] mb-6 leading-relaxed">
-                Tüm proje başvuruları ve teknik sorular doğrudan çekirdek mühendislik ekibimiz tarafından incelenir.
+              <p className="text-sm text-[#9BA7B7] mb-6 leading-relaxed">
+                Tüm başvurular ve teknik sorular, projeyi geliştirecek ekip tarafından okunur.
               </p>
 
-              {/* Copyable Email Box */}
-              <div className="p-3 bg-[#222B3A] border border-[#3D4A63] flex items-center justify-between gap-2 font-mono text-xs mb-4">
-                <span className="text-[#F8F7F2] font-semibold truncate select-all">
+              <div className="p-3 bg-[#222B3A] border border-[#3D4A63] flex items-center justify-between gap-2 mb-6">
+                <span className="text-sm text-[#F8F7F2] font-medium truncate select-all">
                   {STUDIO_CONFIG.email}
                 </span>
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="px-3 py-1.5 bg-[#2B3446] hover:bg-[#EDB96F] hover:text-[#2B3446] text-[#EDB96F] border border-[#3D4A63] flex items-center gap-1.5 shrink-0 transition-colors"
-                  title="E-postayı Kopyala"
+                  className="px-3 py-1.5 bg-[#2B3446] hover:bg-[#EDB96F] hover:text-[#2B3446] text-[#EDB96F] border border-[#3D4A63] flex items-center gap-1.5 shrink-0 transition-colors text-xs"
+                  aria-label="E-posta adresini kopyala"
                 >
                   {copiedEmail ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-[#EDB96F]" />
-                      <span className="text-[11px] font-bold">Kopyalandı</span>
+                      <Check className="w-3.5 h-3.5" aria-hidden="true" />
+                      <span>Kopyalandı</span>
                     </>
                   ) : (
                     <>
-                      <Copy className="w-3.5 h-3.5" />
-                      <span className="text-[11px]">Kopyala</span>
+                      <Copy className="w-3.5 h-3.5" aria-hidden="true" />
+                      <span>Kopyala</span>
                     </>
                   )}
                 </button>
               </div>
 
-              <div className="space-y-2 text-xs font-mono text-[#9BA7B7]">
-                <div className="flex items-center justify-between py-1 border-b border-[#3D4A63]/40">
-                  <span>Yanıt Süresi (SLA):</span>
-                  <span className="text-[#EDB96F] font-semibold">{STUDIO_CONFIG.responseSLA}</span>
+              <dl className="space-y-3 text-sm">
+                <div className="flex items-center justify-between gap-4">
+                  <dt className="text-[#9BA7B7]">Yanıt süresi</dt>
+                  <dd className="text-[#EDB96F] font-medium text-right">{STUDIO_CONFIG.responseSLA}</dd>
                 </div>
-                <div className="flex items-center justify-between py-1 border-b border-[#3D4A63]/40">
-                  <span>Konum & Saat:</span>
-                  <span className="text-[#F8F7F2]">{STUDIO_CONFIG.location} ({STUDIO_CONFIG.timezone})</span>
+                <div className="flex items-center justify-between gap-4">
+                  <dt className="text-[#9BA7B7]">Konum</dt>
+                  <dd className="text-[#F8F7F2] text-right">
+                    {STUDIO_CONFIG.location} ({STUDIO_CONFIG.timezone})
+                  </dd>
                 </div>
-                <div className="flex items-center justify-between py-1">
-                  <span>Durum:</span>
-                  <span className="text-[#EDB96F] font-semibold">{STUDIO_CONFIG.status}</span>
+                <div className="flex items-center justify-between gap-4">
+                  <dt className="text-[#9BA7B7]">Durum</dt>
+                  <dd className="text-[#EDB96F] font-medium text-right">{STUDIO_CONFIG.status}</dd>
                 </div>
-              </div>
+              </dl>
             </div>
 
-            {/* Studio Commitment Box */}
-            <div className="bg-[#171D27] border border-[#3D4A63] p-5 font-mono text-xs space-y-2 text-[#9BA7B7]">
-              <div className="text-[11px] text-[#EDB96F] font-bold uppercase flex items-center gap-2">
-                <Terminal className="w-3.5 h-3.5" />
-                BAŞVURU SONRASI NE OLUR?
-              </div>
-              <p className="text-xs leading-relaxed font-sans text-[#9BA7B7]">
-                Talebinizi aldıktan sonra projenin teknik ihtiyaçlarını inceliyor ve 24 saat içinde net bir kapsam, yaklaşık bütçe ve takvim içeren bir yol haritasıyla geri dönüyoruz.
+            <div className="border-l-2 border-[#EDB96F]/60 pl-5">
+              <h3 className="text-sm font-semibold text-[#F8F7F2] mb-2">Başvurudan sonra ne olur?</h3>
+              <p className="text-sm text-[#9BA7B7] leading-relaxed">
+                Talebinizi inceleyip kapsam, yaklaşık bütçe ve takvim içeren kısa bir yol haritasıyla
+                geri dönüyoruz. Uygun olursa görüşüp detayları netleştiriyoruz.
               </p>
             </div>
 
           </div>
 
-          {/* Right Column: Interactive Project Inquiry Form */}
-          <div className="lg:col-span-7 bg-[#1A202C] border-2 border-[#3D4A63] p-6 sm:p-9 shadow-2xl">
-            <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#3D4A63]">
-              <span className="font-mono text-xs text-[#EDB96F] tracking-wider font-semibold">
-                PROJE BAŞVURU FORMU // SPEC_INPUT
-              </span>
-              <span className="font-mono text-[10px] text-[#9BA7B7]">
-                DOĞRUDAN ENTEGRE
-              </span>
-            </div>
+          {/* Form */}
+          <div className="lg:col-span-7 min-w-0 bg-[#1A202C] border border-[#3D4A63] p-6 sm:p-9">
+            <h3 className="font-['Syne'] text-lg sm:text-xl font-bold text-[#F8F7F2] mb-6">
+              Proje başvuru formu
+            </h3>
 
             {errorMessage && (
-              <div className="mb-6 p-3 bg-red-950/40 border border-red-800 text-red-300 font-mono text-xs flex items-center gap-2">
-                <AlertCircle className="w-4 h-4 shrink-0" />
+              <div
+                role="alert"
+                aria-live="assertive"
+                className="mb-6 p-3.5 bg-[#2A1519] border border-red-800/70 text-red-200 text-sm flex items-start gap-2.5"
+              >
+                <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" aria-hidden="true" />
                 <span>{errorMessage}</span>
               </div>
             )}
 
             {formSubmitted ? (
-              <div className="py-10 text-center space-y-4">
-                <div className="w-12 h-12 bg-[#EDB96F] text-[#2B3446] mx-auto flex items-center justify-center font-bold text-xl">
+              <div className="py-10 text-center" aria-live="polite">
+                <div className="w-12 h-12 bg-[#EDB96F] text-[#2B3446] mx-auto flex items-center justify-center font-bold text-xl mb-5">
                   ✓
                 </div>
-                <h3 className="font-['Syne'] text-2xl font-bold text-[#F8F7F2]">
-                  {submissionChannel === 'supabase' ? 'Başvurunuz Alındı' : 'E-posta İstemciniz Başlatıldı'}
-                </h3>
+                <h4 className="font-['Syne'] text-2xl font-bold text-[#F8F7F2] mb-3">
+                  {submissionChannel === 'supabase' ? 'Başvurunuz bize ulaştı' : 'E-posta taslağınız hazır'}
+                </h4>
                 {submissionChannel === 'supabase' ? (
                   <p className="text-sm text-[#9BA7B7] max-w-md mx-auto leading-relaxed">
-                    Proje detaylarınız güvenli şekilde kaydedildi. Çekirdek ekibimiz başvurunuzu inceleyip size dönüş yapacak. Yanıt süresi taahhüdümüz: <span className="text-[#EDB96F] font-mono">{STUDIO_CONFIG.responseSLA}</span>.
+                    Proje detaylarınız kaydedildi. Ekibimiz inceleyip size dönüş yapacak. Yanıt süresi
+                    taahhüdümüz: <span className="text-[#EDB96F]">{STUDIO_CONFIG.responseSLA}</span>.
                   </p>
                 ) : (
                   <p className="text-sm text-[#9BA7B7] max-w-md mx-auto leading-relaxed">
-                    Proje bilgileriniz yapılandırılmış bir taslak olarak hazırlandı. Eğer e-posta programınız otomatik açılmadıysa, doğrudan <span className="text-[#EDB96F] font-mono">{STUDIO_CONFIG.email}</span> adresine yazabilirsiniz.
+                    Bilgileriniz hazır bir e-posta taslağına dönüştürüldü. E-posta programınız açılmadıysa
+                    doğrudan <span className="text-[#EDB96F]">{STUDIO_CONFIG.email}</span> adresine yazabilirsiniz.
                   </p>
                 )}
-                <div className="pt-4">
+                <div className="pt-6">
                   <button
                     type="button"
                     onClick={() => {
                       setFormSubmitted(false);
                       setSubmissionChannel(null);
                     }}
-                    className="px-5 py-2 bg-[#222B3A] border border-[#3D4A63] text-xs font-mono text-[#F8F7F2] hover:border-[#EDB96F]"
+                    className="px-5 py-2.5 bg-[#222B3A] border border-[#3D4A63] text-sm text-[#F8F7F2] hover:border-[#EDB96F] transition-colors"
                   >
-                    Yeni Başvuru Doldur
+                    Yeni başvuru doldur
                   </button>
                 </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                
-                {/* 2-Column Personal Details */}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
+                  <div className="min-w-0">
                     <label
                       htmlFor="contact-fullName"
-                      className="block font-mono text-xs text-[#F8F7F2] uppercase mb-2 font-semibold"
+                      className="block text-xs font-semibold text-[#F8F7F2] mb-2"
                     >
-                      Ad Soyad <span className="text-[#EDB96F]">*</span>
+                      Ad soyad <span className="text-[#EDB96F]">*</span>
                     </label>
                     <input
                       type="text"
                       id="contact-fullName"
+                      name="fullName"
                       required
                       maxLength={120}
+                      autoComplete="name"
                       placeholder="Örn. Mehmet Yılmaz"
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-[#171D27] border border-[#3D4A63] focus:border-[#EDB96F] text-sm text-[#F8F7F2] outline-none transition-colors font-sans placeholder:text-[#5A687D]"
+                      className={FIELD_CLASS}
                     />
                   </div>
 
-                  <div>
+                  <div className="min-w-0">
                     <label
                       htmlFor="contact-email"
-                      className="block font-mono text-xs text-[#F8F7F2] uppercase mb-2 font-semibold"
+                      className="block text-xs font-semibold text-[#F8F7F2] mb-2"
                     >
-                      E-posta Adresi <span className="text-[#EDB96F]">*</span>
+                      E-posta <span className="text-[#EDB96F]">*</span>
                     </label>
                     <input
                       type="email"
                       id="contact-email"
+                      name="email"
                       required
                       maxLength={254}
+                      autoComplete="email"
                       placeholder="adiniz@sirketiniz.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-[#171D27] border border-[#3D4A63] focus:border-[#EDB96F] text-sm text-[#F8F7F2] outline-none transition-colors font-sans placeholder:text-[#5A687D]"
+                      className={FIELD_CLASS}
                     />
                   </div>
                 </div>
 
-                {/* Company Name */}
                 <div>
                   <label
                     htmlFor="contact-company"
-                    className="block font-mono text-xs text-[#F8F7F2] uppercase mb-2 font-semibold"
+                    className="block text-xs font-semibold text-[#F8F7F2] mb-2"
                   >
-                    Şirket / Marka Adı <span className="text-[#9BA7B7] text-[11px]">(İsteğe Bağlı)</span>
+                    Şirket / marka <span className="text-[#9BA7B7] font-normal">(isteğe bağlı)</span>
                   </label>
                   <input
                     type="text"
                     id="contact-company"
+                    name="company"
                     maxLength={160}
+                    autoComplete="organization"
                     placeholder="Örn. Nova Lojistik A.Ş."
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-[#171D27] border border-[#3D4A63] focus:border-[#EDB96F] text-sm text-[#F8F7F2] outline-none transition-colors font-sans placeholder:text-[#5A687D]"
+                    className={FIELD_CLASS}
                   />
                 </div>
 
-                {/* Project Type Selector */}
-                <div>
-                  <label className="block font-mono text-xs text-[#F8F7F2] uppercase mb-2 font-semibold">
-                    Proje Türü <span className="text-[#EDB96F]">*</span>
-                  </label>
+                <div role="group" aria-labelledby="contact-projectType-label">
+                  <span id="contact-projectType-label" className="block text-xs font-semibold text-[#F8F7F2] mb-2">
+                    Proje türü <span className="text-[#EDB96F]">*</span>
+                  </span>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                     {PROJECT_TYPES.map((type) => {
                       const isSelected = formData.projectType === type;
@@ -344,25 +339,25 @@ Bu mesaj crescendosoftware.com üzerinden oluşturulmuştur.`
                         <button
                           key={type}
                           type="button"
+                          aria-pressed={isSelected}
                           onClick={() => setFormData({ ...formData, projectType: type })}
-                          className={`p-2.5 text-left font-mono text-xs border transition-all ${
+                          className={`p-2.5 text-left text-xs border transition-colors ${
                             isSelected
-                              ? 'bg-[#2B3446] border-[#EDB96F] text-[#EDB96F] font-bold'
+                              ? 'bg-[#2B3446] border-[#EDB96F] text-[#EDB96F] font-semibold'
                               : 'bg-[#171D27] border-[#3D4A63] text-[#9BA7B7] hover:text-[#F8F7F2]'
                           }`}
                         >
-                          {isSelected ? '✓ ' : ''}{type}
+                          {type}
                         </button>
                       );
                     })}
                   </div>
                 </div>
 
-                {/* Budget Range Selector */}
-                <div>
-                  <label className="block font-mono text-xs text-[#F8F7F2] uppercase mb-2 font-semibold">
-                    Tahmini Bütçe Aralığı
-                  </label>
+                <div role="group" aria-labelledby="contact-budget-label">
+                  <span id="contact-budget-label" className="block text-xs font-semibold text-[#F8F7F2] mb-2">
+                    Tahmini bütçe <span className="text-[#9BA7B7] font-normal">(bilmiyorsanız sorun değil)</span>
+                  </span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {BUDGET_RANGES.map((range) => {
                       const isSelected = formData.budgetRange === range;
@@ -370,14 +365,14 @@ Bu mesaj crescendosoftware.com üzerinden oluşturulmuştur.`
                         <button
                           key={range}
                           type="button"
+                          aria-pressed={isSelected}
                           onClick={() => setFormData({ ...formData, budgetRange: range })}
-                          className={`p-2 text-left font-mono text-xs border transition-all ${
+                          className={`px-3 py-2.5 text-left text-xs border transition-colors ${
                             isSelected
                               ? 'bg-[#2B3446] border-[#EDB96F] text-[#F8F7F2] font-semibold'
                               : 'bg-[#171D27] border-[#3D4A63] text-[#9BA7B7] hover:text-[#F8F7F2]'
                           }`}
                         >
-                          <span className="text-[#EDB96F] mr-1.5">•</span>
                           {range}
                         </button>
                       );
@@ -385,50 +380,51 @@ Bu mesaj crescendosoftware.com üzerinden oluşturulmuştur.`
                   </div>
                 </div>
 
-                {/* Project Details Textarea */}
                 <div>
                   <label
                     htmlFor="contact-projectDetails"
-                    className="block font-mono text-xs text-[#F8F7F2] uppercase mb-2 font-semibold"
+                    className="block text-xs font-semibold text-[#F8F7F2] mb-2"
                   >
-                    Projeniz & Hedefleriniz <span className="text-[#EDB96F]">*</span>
+                    Projeniz ve hedefleriniz <span className="text-[#EDB96F]">*</span>
                   </label>
                   <textarea
                     id="contact-projectDetails"
+                    name="projectDetails"
                     required
-                    rows={4}
+                    rows={5}
                     maxLength={5000}
-                    placeholder="İhtiyacınız olan web sitesi veya yazılımın temel özelliklerini, hedef kitlenizi ve varsa teslim takvimi hedefinizi kısaca açıklayınız..."
+                    placeholder="Ne yapmak istiyorsunuz, kime hitap edecek, elinizde hazır içerik/tasarım var mı ve hedeflediğiniz bir tarih var mı?"
                     value={formData.projectDetails}
                     onChange={(e) => setFormData({ ...formData, projectDetails: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-[#171D27] border border-[#3D4A63] focus:border-[#EDB96F] text-sm text-[#F8F7F2] outline-none transition-colors font-sans placeholder:text-[#5A687D]"
+                    className={FIELD_CLASS}
                   ></textarea>
                 </div>
 
-                {/* Submit Action */}
-                <div className="pt-2">
+                <div className="pt-1">
                   <button
                     type="submit"
                     id="contact-form-submit-btn"
                     disabled={isSubmitting}
                     aria-busy={isSubmitting}
-                    className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#EDB96F] hover:bg-[#DFAB5F] text-[#2B3446] font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-md active:translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#EDB96F] hover:bg-[#DFAB5F] text-[#2B3446] text-sm font-bold tracking-wide transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <span>{isSubmitting ? 'Başvurunuz Kaydediliyor...' : 'Projeyi İletin & İnceleme Başlatın'}</span>
-                    {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                    <span>{isSubmitting ? 'Gönderiliyor…' : 'Başvuruyu Gönder'}</span>
+                    {isSubmitting ? (
+                      <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
+                    ) : (
+                      <Send className="w-4 h-4" aria-hidden="true" />
+                    )}
                   </button>
-                  <p className="font-mono text-[10px] text-[#9BA7B7] text-center mt-2.5">
-                    * Bilgileriniz gizlilikle korunur. Spam yok, doğrudan stüdyo iletişimi.
+                  <p className="text-xs text-[#9BA7B7] text-center mt-3">
+                    Bilgileriniz yalnızca projenizi değerlendirmek için kullanılır; üçüncü taraflarla paylaşılmaz.
                   </p>
                 </div>
 
               </form>
             )}
-
           </div>
 
         </div>
-
       </div>
     </section>
   );

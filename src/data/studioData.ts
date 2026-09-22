@@ -6,170 +6,204 @@ export const STUDIO_CONFIG = {
   email: 'crescendosoftwareinc@gmail.com',
   location: 'İstanbul, Türkiye',
   timezone: 'GMT+3 (TSI)',
-  status: 'Yeni Proje Kabulü: Aktif',
+  status: 'Yeni projelere açık',
   responseSLA: '24 saat içinde doğrudan dönüş',
-  founded: '2024',
 };
 
 export const SERVICES_DATA: ServiceItem[] = [
   {
     id: 'web-development',
-    code: '01 / MİMARİ & WEB',
-    title: 'Modern Web Geliştirme',
-    tagline: 'Hazır temalara bağımlı kalmadan, sıfırdan amaca özel üretilmiş yüksek hızlı web siteleri.',
-    description: 'Arama motorlarında güçlü, sayfa açılış hızı milisaniyeler seviyesinde olan ve işletmenizin kurumsal ciddiyetini eksiksiz yansıtan modern web platformları inşa ediyoruz. Şablon kalabalığından uzak, her satırı amaca hizmet eden temiz kod mimarisi kuruyoruz.',
-    architectureDetails: [
-      'Statik ve Sunucu Taraflı Hibrit Rendering (SSR / SSG)',
-      'Sub-second sayfa yükleme performansı ve Core Web Vitals optimizasyonu',
-      'Modüler bileşen mimarisi ve sıfır gereksiz JavaScript yükü',
-      'Kurumsal arama motoru optimizasyonu (Teknik SEO & Yapısal Veri)'
+    code: '01 / WEB SİTESİ',
+    title: 'Web Sitesi Tasarımı & Geliştirme',
+    tagline: 'Hazır tema satın almadan, işinize göre sıfırdan tasarlanıp kodlanan web siteleri.',
+    description: 'İşletmenizi internette doğru şekilde temsil eden; hızlı açılan, telefonda da masaüstünde de düzgün görünen siteler geliştiriyoruz. Arama motorlarında bulunabilmeniz için gereken teknik temeli kuruyor, içeriğinizi sonradan rahatça güncelleyebileceğiniz bir yapı bırakıyoruz.',
+    highlights: [
+      'Kurumsal tanıtım siteleri, ürün-hizmet katalogları ve açılış sayfaları',
+      'Telefon, tablet ve masaüstünde sorunsuz görünen tasarım',
+      'Arama motoru için teknik düzen: sayfa başlıkları, site haritası, yapısal veri',
+      'İçeriğinizi kendiniz güncelleyebileceğiniz yönetim paneli (ihtiyaç halinde)'
     ],
     deliverables: [
-      'Tam ölçeklenebilir React / Next.js / Vite web platformu',
-      'Gereksinimlere özel içerik yönetim entegrasyonu',
-      'Lighthouse 95+ performans ve erişilebilirlik garantisi',
-      'Tüm cihazlarda kusursuz çalışan responsive tasarım'
+      'Tasarımı ve koduyla size ait, şablon olmayan bir site',
+      'İhtiyaca uygun içerik yönetimi veya kolay düzenlenebilir sayfa yapısı',
+      'Yayın öncesi hız, erişilebilirlik ve mobil kontrol listesi',
+      'Alan adı, SSL ve yayına alma kurulumu'
     ],
-    techStack: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Vite'],
-    visualType: 'code-structure'
+    techStack: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Vite']
   },
   {
     id: 'custom-software',
     code: '02 / ÖZEL YAZILIM',
-    title: 'Özel İş & Operasyon Yazılımları',
-    tagline: 'Standart paket programların yetersiz kaldığı noktalarda iş akışınıza tam uyum sağlayan yazılımlar.',
-    description: 'Şirketinizin kendine özgü iç süreçleri, onay zincirleri ve veri akışları için terzi dikimi yazılımlar üretiyoruz. Dağınık Excel tabloları ve birbirine bağlanamayan araçlar yerine, tek merkezden yönetilen güvenli operasyonel platformlar teslim ediyoruz.',
-    architectureDetails: [
-      'Rol ve yetki tabanlı erişim kontrolü (Granular RBAC)',
-      'İş akışı otomasyonları ve gerçek zamanlı bildirim servisleri',
-      'Üçüncü parti servis (ERP, muhasebe, kargo, SMS) API entegrasyonları',
-      'Yüksek veri bütünlüğü ve şifrelenmiş veri depolama'
+    title: 'İş Süreçlerinize Özel Yazılım',
+    tagline: 'Hazır paketlerin yetmediği yerde, kendi iş akışınıza göre çalışan yazılımlar.',
+    description: 'Excel tabloları, mesaj yazışmaları ve birbirini görmeyen programlar arasında dağılan süreçleri tek bir panelde topluyoruz. Sipariş, stok, onay, personel veya müşteri takibi gibi işlerinizi kendi kurallarınıza göre yürüten yazılımlar geliştiriyoruz.',
+    highlights: [
+      'Rol ve yetki kontrolü: kim neyi görecek, kim neyi değiştirecek',
+      'Onay akışları, hatırlatmalar ve otomatik e-postalar',
+      'Muhasebe, ERP, kargo veya SMS gibi mevcut sistemlerle entegrasyon',
+      'Verinizin size ait kaldığı, yedeklenen bir veri yapısı'
     ],
     deliverables: [
-      'Özel yönetim paneli ve çalışan portalları',
-      'Güvenli REST / GraphQL API katmanı',
-      'Otomatik raporlama ve veri dışa aktarım modülleri',
-      'Detaylı teknik mimari ve kullanım dokümantasyonu'
+      'Ekip için yönetim paneli, gerekiyorsa müşteri/çalışan portalı',
+      'İhtiyaca göre kurgulanmış kullanıcı yetkilendirmesi',
+      'Rapor ekranları ve Excel / PDF dışa aktarımı',
+      'Kurulum, kullanım eğitimi ve teknik dokümantasyon'
     ],
-    techStack: ['Node.js', 'Python', 'PostgreSQL', 'Supabase', 'REST API'],
-    visualType: 'api-flow'
+    techStack: ['Node.js', 'Python', 'PostgreSQL', 'Supabase', 'REST API']
   },
   {
     id: 'digital-products',
-    code: '03 / DİJİTAL ÜRÜNLER',
-    title: 'SaaS & Dijital Ürün Geliştirme',
-    tagline: 'Fikrinizi pazara çıkmaya hazır, ölçeklenebilir çalışan bir ürüne dönüştürüyoruz.',
-    description: 'Yeni bir dijital girişim veya kurum içi bir SaaS ürünü hayata geçirirken, fikrinizi pazarla buluşturacak MVP (Minimum Viable Product) aşamasından tam ölçekli üretim altyapısına kadar uçtan uca yanınızdayız. Hızlı iterasyon ve sağlam temeller bir arada.',
-    architectureDetails: [
-      'Abonelik ve ödeme altyapıları (Stripe, iyzico, vb.)',
-      'Çok kiracılı (Multi-tenant) veri mimarisi',
-      'Olay güdümlü (Event-driven) arka plan kuyrukları ve bildirimler',
-      'Sıfır kesintili dağıtım ve bulut izleme altyapısı'
+    code: '03 / DİJİTAL ÜRÜN',
+    title: 'Dijital Ürün & SaaS Geliştirme',
+    tagline: 'Fikrinizi, kullanılabilir ve yayına hazır bir ürüne dönüştürüyoruz.',
+    description: 'Önce gerçekten gerekli olan çekirdek özellikleri yayına alıyor, ardından kullanıcı geri bildirimine göre ürünü adım adım büyütüyoruz. Fikrinizi teknik terimlere boğmadan; kime, neyi, neden sunduğunuzu netleştirerek ilerliyoruz.',
+    highlights: [
+      'Üyelik, giriş ve abonelik altyapısı',
+      'Ödeme entegrasyonu (Stripe, iyzico ve benzeri)',
+      'Ürün içi bildirimler ve otomatik e-posta akışları',
+      'Ürünün nasıl kullanıldığını görebileceğiniz sade bir ölçüm paneli'
     ],
     deliverables: [
-      'Pazara sunulmaya hazır uçtan uca web uygulaması',
-      'Kullanıcı kimlik doğrulama, profil ve abonelik modülleri',
-      'Analitik ve kullanıcı davranışı izleme entegrasyonu',
-      'Sürekli entegrasyon (CI/CD) boru hattı kurulumu'
+      'Yayına hazır web uygulaması ve yönetim paneli',
+      'Kullanıcı hesapları, roller ve abonelik yönetimi',
+      'Ödeme ve e-posta servisleriyle çalışan akışlar',
+      'Yeni sürümleri yayına alan dağıtım düzeni ve kısa kullanım kılavuzu'
     ],
-    techStack: ['TypeScript', 'Next.js', 'PostgreSQL', 'Tauri', 'Cloud Infrastructure'],
-    visualType: 'saas-modules'
+    techStack: ['TypeScript', 'Next.js', 'PostgreSQL', 'Tauri', 'Cloud Infrastructure']
   },
   {
     id: 'ui-ux-engineering',
-    code: '04 / TASARIM MÜHENDİSLİĞİ',
-    title: 'UI/UX & Tasarım Sistemleri',
-    tagline: 'Yalnızca şık değil; okunabilir, erişilebilir ve yazılıma doğrudan uyumlu arayüzler.',
-    description: 'Tasarımı koddan bağımsız bir çizim olarak değil, yaşayan bir mühendislik bileşeni olarak ele alıyoruz. Markanızın kimliğini tipografi, ızgara sistemi ve renk hiyerarşisiyle buluşturup doğrudan bileşen kütüphanesine dönüştürüyoruz.',
-    architectureDetails: [
-      'Matematiksel tipografi skalası ve tutarlı boşluk hiyerarşisi',
-      'WCAG AA kontrast ve erişilebilirlik standartları',
-      'Tasarım belirteçleri (Design Tokens) ile kod uyumu',
-      'Gereksiz süslemelerden arındırılmış, işlev odaklı etkileşimler'
+    code: '04 / ARAYÜZ TASARIMI',
+    title: 'Arayüz Tasarımı & Kullanılabilirlik',
+    tagline: 'Şık olduğu kadar kolay kullanılan, ne yapacağı anlaşılan arayüzler.',
+    description: 'Arayüzü sonradan eklenen bir süs olarak değil, ürünün çalışan bir parçası olarak ele alıyoruz. Ekranları kullanıcının gerçekte ne yapmaya çalıştığına göre kurguluyor, tasarımı doğrudan koda dönüşecek şekilde hazırlıyoruz.',
+    highlights: [
+      'Ekran akışları ve tıklanabilir prototipler',
+      'Tekrar kullanılabilir bileşenler ve tutarlı bir tasarım dili',
+      'Okunabilirlik, kontrast ve erişilebilirlik kontrolü',
+      'Geliştiriciye teslim edilmeye hazır tasarım dosyaları'
     ],
     deliverables: [
-      'Genişletilebilir Figma tasarım sistemi ve bileşen kütüphanesi',
-      'Tıklanabilir yüksek sadakatli etkileşimli prototipler',
-      'Tasarım belirteçleri JSON ve Tailwind konfigürasyon paketi',
-      'Tüm durumları (boş, hata, yükleniyor) içeren arayüz şablonları'
+      'Kullanıcı akışlarını gösteren tıklanabilir prototip',
+      'Bileşen kütüphanesi ve stil kılavuzu',
+      'Mobil ve masaüstü ekran tasarımları',
+      'Geliştirme boyunca tasarım kontrolü ve geri bildirim'
     ],
-    techStack: ['Design Systems', 'Design Tokens', 'Figma to Code', 'Tailwind CSS', 'A11y'],
-    visualType: 'design-tokens'
+    techStack: ['Figma', 'Design Tokens', 'Tailwind CSS', 'Erişilebilirlik']
   }
 ];
 
 export const PROJECTS_DATA: ProjectItem[] = [
   {
-    id: 'proje-01',
+    id: 'fikir-akademisi',
     code: 'PROJE 01',
-    title: 'Kurumsal Endüstriyel Platform',
-    clientType: 'Endüstriyel İmalat & Global İhracat',
-    category: 'Kurumsal Web Mimarisi',
-    year: '2024 / Q3',
-    summary: 'Ağır sanayi parçaları üreten bir ihracat markası için çok dilli, yüksek hızlı ve teknik katalog altyapısına sahip kurumsal web mimarisi.',
-    challenge: 'Geniş ürün kataloğundaki binlerce teknik çizimin ve PDF veri föyünün arama motorlarında hızlı indekslenmesi ve mobil cihazlarda gecikmesiz açılması gerekiyordu.',
-    architectureSolution: 'Next.js tabanlı statik sayfa ön-derleme (SSG) ile milisaniye düzeyinde yanıt süresi sağlandı. Teknik katalog için istemci tarafında anlık filtreleme ve önbellek mekanizması kuruldu.',
-    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Headless CMS', 'Cloudflare Edge'],
+    title: 'Fikir Akademisi',
+    clientType: 'Eğitim Teknolojileri · Okul Dijital Kütüphane & Okuma Platformu',
+    category: 'Education Platform',
+    summary: 'Bir okul için geliştirilen; dijital kütüphane, okuma takibi, ödev ve quiz yönetimini tek platformda birleştiren eğitim uygulaması.',
+    challenge: 'Öğrencilerin okuma süreçlerinin ölçülemiyor olması, kitap ödevlerinin ve quizlerin dağınık araçlarla yürütülmesi ve öğrenci, öğretmen, geliştirici rollerinin birbirinden yalıtılmış yetkilerle çalışması gerekliliği.',
+    architectureSolution: 'React 19 + Vite ile geliştirilen arayüz, Supabase PostgreSQL üzerinde rol bazlı veri izolasyonu ile çalışır. Kitaplar sayfa sayfa okunur; aktif okuma süresi, ilerleme, not ve vurgular veritabanında saklanır. Öğretmen paneli kitap ödevlerini, quizleri ve öğrenci ilerlemesini yönetir. Fikir AI asistanı, kitap özetleme ve kavram açıklama için Google Gemini üzerinden entegre edilmiştir.',
+    stack: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'Google Gemini'],
     deliverables: [
-      'Çok dilli (TR/EN/DE) dinamik teknik katalog',
-      'Milisaniyelik parametrik ürün arama ve filtreleme motoru',
-      'Mobil odaklı PDF teknik föy görüntüleyici',
-      'Teknik SEO & Schema.org endüstriyel ürün işaretlemeleri'
+      'Sayfa sayfa çalışan dijital kitap okuyucu',
+      'Not alma ve vurgulama sistemi',
+      'AI destekli Fikir AI okuma asistanı (özetleme ve kavram açıklama)',
+      'Aktif okuma süresi takibi ve okuma ilerleme raporları',
+      'Öğretmen paneli: kitap ödevi oluşturma ve takip',
+      'Quiz sistemi ve soru kapıları',
+      'Gamification ve okuyucu seviyeleri',
+      'Şüpheli okuma tespiti (anti-cheat)',
+      'Kitap aktarım sistemi',
+      'Üç rol: öğrenci, öğretmen, geliştirici',
+      'Supabase PostgreSQL + RLS veri katmanı'
     ],
     specs: [
-      { label: 'Sayfa Açılış Hızı', value: '< 0.4s' },
-      { label: 'Lighthouse Performans', value: '99 / 100' },
-      { label: 'Mimari', value: 'Edge SSR / SSG' },
-      { label: 'Katalog Hacmi', value: '1.200+ Teknik Parça' }
-    ]
+      { label: 'Frontend', value: 'React 19 + Vite' },
+      { label: 'Kullanıcı Rolleri', value: '3 (Öğrenci / Öğretmen / Geliştirici)' },
+      { label: 'Veri Katmanı', value: 'Supabase PostgreSQL + RLS' },
+      { label: 'AI Asistan', value: 'Fikir AI (Google Gemini)' }
+    ],
+    preview: {
+      kind: 'schematic',
+      headerLabel: 'ÜRÜN AKIŞI: DİJİTAL KÜTÜPHANE & OKUMA TAKİBİ',
+      headerBadge: 'React 19 + Supabase',
+      rows: [
+        { label: '1. Dijital Kitap Okuyucu [Sayfa Sayfa]', value: 'Not & Vurgu', width: 100 },
+        { label: '2. Aktif Okuma Süresi & İlerleme Takibi', value: 'Öğretmen Paneli', width: 84 },
+        { label: '3. Fikir AI Okuma Asistanı', value: 'Özet & Kavram', width: 72 }
+      ],
+      footerLeft: 'ROLLER: ÖĞRENCİ · ÖĞRETMEN · GELİŞTİRİCİ',
+      footerRight: 'RLS İLE ROL BAZLI ERİŞİM'
+    }
   },
   {
-    id: 'proje-02',
+    id: 'lc-waikiki-lojistik-yemekhane',
     code: 'PROJE 02',
-    title: 'Özel Lojistik & Depo Operasyon Sistemi',
-    clientType: 'B2B Dağıtım & Tedarik Zinciri',
-    category: 'Özel İş Yazılımı',
-    year: '2024 / Q4',
-    summary: 'Dağınık depo noktaları, koli takipleri ve sevkiyat planlamalarını tek ekranda toplayan rol bazlı operasyonel iç yönetim yazılımı.',
-    challenge: 'Mevcut işletmede tüm takip telefon trafiği ve Excel tabloları üzerinden yürütülüyor, stok kayıpları ve sevkiyat gecikmeleri yaşanıyordu.',
-    architectureSolution: 'PostgreSQL üzerinde güçlü bir ilişkisel veri modeli ve rol bazlı erişim mekanizması inşa edildi. Depo personeli için barkod okutmalı mobil web arayüzü hazırlandı.',
-    stack: ['React', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'Docker'],
+    title: 'LC Waikiki Lojistik Yemekhane',
+    clientType: 'LC Waikiki Lojistik Tesisleri · İstanbul, Silivri, Yalova, Aksaray',
+    category: 'Corporate / Internal Platform',
+    summary: 'Lojistik tesislerinde çalışanların günlük yemekhane menülerine telefonlarından ulaşabildiği ve yemekleri anonim olarak değerlendirebildiği mobil öncelikli kurumsal web uygulaması.',
+    challenge: 'Menülerin Excel dosyaları üzerinden dağıtılması, çalışanların telefonlarından menüye giriş yapmadan erişememesi ve yemek memnuniyetinin ölçülememesi. Dört ayrı tesisteki ana menü ve gece kahvaltısı verisinin düzenli biçimde ayrıştırılıp veritabanıyla karşılaştırılarak aktarılması gerekiyordu.',
+    architectureSolution: 'Yönetim tarafında aylık Excel menü dosyaları 7 sheet yapısını okuyan kural tabanlı parser ile ayrıştırılır; tarihler, yemekler ve kalori bilgileri okunur, yemekler anahtar kelime eşleştirmesiyle otomatik kategorilere ayrılır. Veriler karşılaştırılarak veritabanına aktarılır ve menüler başka günlere kopyalanabilir. Çalışan tarafında giriş gerektirmeyen menü görünümü ve anonim yemek oylaması sunulur; veri katmanı Supabase PostgreSQL ve RLS ile korunur.',
+    stack: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'SheetJS', 'Recharts'],
     deliverables: [
-      'Gerçek zamanlı depo stok durumu ve lokasyon haritası',
-      'Barkod & QR kod ile anında mal kabul ve çıkış akışı',
-      'Müşteri sipariş durumu takip paneli ve SMS entegrasyonu',
-      'Günlük ve aylık otomatik operasyonel özet raporları'
+      'Günlük menü görüntüleme (mobil öncelikli)',
+      '4 farklı lojistik lokasyonu için ayrı menü akışı',
+      'Ana Menü ve Gece Kahvaltısı görünümleri',
+      'Anonim yemek bazlı oylama (Beğendim / Beğenmedim)',
+      '7 sheet yapısını okuyan Excel parser ile otomatik menü aktarımı',
+      'Anahtar kelime tabanlı otomatik yemek kategorilendirme',
+      'Kalori bilgilerinin menüye işlenmesi',
+      'Menü düzenleme paneli ve menüleri başka günlere kopyalama',
+      'Lokasyon ve kategori bazlı memnuniyet istatistikleri',
+      'Değişiklik geçmişi / audit log',
+      'Yönetici paneli',
+      'Supabase PostgreSQL + RLS veri katmanı'
     ],
     specs: [
-      { label: 'Kullanıcı Rolleri', value: '4 Kademe (Yönetici, Şef, Saha, Müşteri)' },
-      { label: 'Veritabanı', value: 'PostgreSQL Relational' },
-      { label: 'Yanıt Süresi API', value: '< 45ms' },
-      { label: 'Entegrasyon', value: 'ERP & Kargo API' }
-    ]
+      { label: 'Lokasyon', value: '4 Lojistik Tesisi' },
+      { label: 'Menü Kaynağı', value: 'Excel Parser (7 Sheet)' },
+      { label: 'Değerlendirme', value: 'Anonim Oylama' },
+      { label: 'Veri Katmanı', value: 'Supabase PostgreSQL + RLS' }
+    ],
+    preview: {
+      kind: 'module',
+      label: 'KURUMSAL OPERASYON PANELİ',
+      headline: 'Excel Parser ile Otomatik Menü Aktarımı ve Kategorilendirme',
+      note: '4 Lokasyon • Ana Menü & Gece Kahvaltısı • Anonim Oylama'
+    }
   },
   {
-    id: 'proje-03',
+    id: 'ramazan-web-deneyimi',
     code: 'PROJE 03',
-    title: 'SaaS Finansal Veri & Analitik Portalı',
-    clientType: 'Dijital Girişim / Fintech',
-    category: 'Dijital Ürün & SaaS',
-    year: '2025 / Q1',
-    summary: 'KOBİ’lerin nakit akışını ve periyodik abonelik harcamalarını grafiklerle analiz eden çok kiracılı SaaS web uygulaması prototipi.',
-    challenge: 'Kullanıcıların karmaşık banka ekstrelerini ve gelir-gider kalemlerini gecikmesiz, anlaşılır ve güvenli bir arayüzde görselleştirme ihtiyacı.',
-    architectureSolution: 'Supabase Row-Level Security (RLS) ile müşteri verilerinin tam izolasyonu sağlandı. Recharts & D3 matematiksel vektörleriyle anlık finansal grafik panelleri geliştirildi.',
-    stack: ['React', 'TypeScript', 'Supabase', 'Tailwind CSS', 'Vite'],
+    title: 'Ramazan Özel Web Deneyimi',
+    clientType: 'Ramazan Dönemi · Günlük İçerik & İbadet Zamanları',
+    category: 'Interactive Web Experience',
+    summary: 'Ramazan ayına özel geliştirilen, günlük dini içerikleri ve ibadet zamanlarını interaktif bir deneyimde bir araya getiren web uygulaması.',
+    challenge: 'Günün ayeti ve hadisinin her ziyarette yenilenmesi, rastgele ayet keşfinin akıcı çalışması ve iftara kalan sürenin canlı geri sayımla kullanıcıya anlık gösterilmesi gerekiyordu.',
+    architectureSolution: 'Günün ayeti ve hadisi, rastgele ayet akışı, namaz vakitleri ve iftar geri sayımı tek sayfalık interaktif bir deneyimde birleştirildi. Tasarım mobil öncelikli, sade ve hızlı yüklenen bir arayüz olarak kurgulandı.',
+    stack: [],
     deliverables: [
-      'Güvenli e-posta ve iki adımlı doğrulama (2FA)',
-      'Otomatik kategori eşleme ve gelir/gider grafik panosu',
-      'PDF ve Excel formatında aylık bilanço dışa aktarımı',
-      'Kullanıcı bazlı bütçe alarm ve sınır bildirimleri'
+      'Günün Ayeti',
+      'Günün Hadisi',
+      'Rastgele ayet sistemi',
+      'Namaz vakitleri takibi',
+      'İftara kalan süre ve canlı geri sayım',
+      'Ramazan ayına özel günlük içerikler',
+      'Mobil uyumlu, interaktif kullanıcı deneyimi'
     ],
     specs: [
-      { label: 'Veri İzolasyonu', value: 'Supabase RLS Enforced' },
-      { label: 'Grafik Motoru', value: 'Vektörel SVG / D3' },
-      { label: 'Veri Formatı', value: 'Gerçek Zamanlı Senkron' },
-      { label: 'Güvenlik', value: 'Uçtan Uca Şifreli İletişim' }
-    ]
+      { label: 'Format', value: 'Tek Sayfa Web Deneyimi' },
+      { label: 'İçerik', value: 'Günün Ayeti & Hadisi' },
+      { label: 'Zamanlama', value: 'Namaz Vakitleri + İftar Geri Sayımı' },
+      { label: 'Arayüz', value: 'Mobil Uyumlu & Minimal' }
+    ],
+    preview: {
+      kind: 'module',
+      label: 'İNTERAKTİF DENEYİM',
+      headline: 'Günün Ayeti & Hadisi + Canlı İftar Geri Sayımı',
+      note: 'Namaz Vakitleri • Rastgele Ayet • Mobil Uyumlu Tasarım'
+    }
   }
 ];
 
@@ -185,7 +219,7 @@ export const PROCESS_DATA: ProcessStep[] = [
       'Teknoloji yığını ve mimari yol haritası kararı',
       'Net teslim takvimi ve kesin bütçe planı'
     ],
-    technicalAudit: 'Gereksiz kütüphane ve karmaşıklığın önüne geçilerek amaca en uygun temel seçilir.'
+    note: 'Gereksiz kütüphane ve karmaşıklığın önüne geçilerek amaca en uygun temel seçilir.'
   },
   {
     step: '02',
@@ -198,7 +232,7 @@ export const PROCESS_DATA: ProcessStep[] = [
       'Veritabanı ilişkisel şeması ve API sözleşmesi (Contract)',
       'Tipografi, renk ve bileşen tasarım tokenları'
     ],
-    technicalAudit: 'Geliştirme aşamasında geri dönüşleri sıfıra indiren eksiksiz mimari onay süreci.'
+    note: 'Kod yazmadan önce onaylanan ekran akışları, sonradan yaşanan sürprizleri azaltır.'
   },
   {
     step: '03',
@@ -211,7 +245,7 @@ export const PROCESS_DATA: ProcessStep[] = [
       'Mobil, tablet ve masaüstü çapraz tarayıcı testleri',
       'Güvenlik ve Core Web Vitals performans denetimleri'
     ],
-    technicalAudit: 'Haftalık canlı test ortamı incelemeleri ile şeffaf ilerleme takibi.'
+    note: 'Her hafta çalışan bir test bağlantısı paylaşılır; ilerlemeyi kendiniz görürsünüz.'
   },
   {
     step: '04',
@@ -225,7 +259,7 @@ export const PROCESS_DATA: ProcessStep[] = [
       'Hata izleme ve performans takip servislerinin entegrasyonu',
       'Gereksinim halinde periyodik bakım ve geliştirme desteği'
     ],
-    technicalAudit: 'Canlıya geçiş anında sıfır veri kaybı ve sürekli sistem izleme altyapısı.'
+    note: 'Yayına geçiş planı, yedekleme düzeni ve ilk gün desteği baştan birlikte belirlenir.'
   }
 ];
 
@@ -245,14 +279,14 @@ export const PHILOSOPHY_DATA: StudioPhilosophy[] = [
   {
     code: '03 / HIZ & PERFORMANS',
     title: 'Milisaniyelerin Önemi',
-    description: 'Yavaş açılan bir web sitesi veya kasan bir kurumsal panel, doğrudan ciro ve itibar kaybıdır. Kodlarımızı sıkı optimizasyon süzgeçlerinden geçirerek en yüksek hızda çalışmasını sağlıyoruz.',
-    practice: 'Google Lighthouse skorlarında 95+ ve anlık açılan arayüz standartları.'
+    description: 'Yavaş açılan bir site ziyaretçiyi, kasan bir panel ise çalışanınızı yorar. Gereksiz yükü baştan almıyor, sayfaların hızlı açılmasına ve arayüzün akıcı kalmasına özen gösteriyoruz.',
+    practice: 'Yalnızca gerçekten gereken kod tarayıcıya gider; sayfalar hafif kalır.'
   },
   {
-    code: '04 / ÖLÇEKLENEBİLİR ALTYAPI',
-    title: 'Geleceğe Hazır Mimari',
-    description: 'İşletmeniz büyüdüğünde çökmeyen, yeni özellikler eklemek istediğinizde sil baştan yazılması gerekmeyen modüler ve modern bir teknoloji yığını seçiyoruz.',
-    practice: 'TypeScript güvencesi, güçlü veritabanı şemaları ve test edilebilir bileşenler.'
+    code: '04 / BÜYÜMEYE AÇIK YAPI',
+    title: 'Sonradan Yeniden Yazdırmayan Temel',
+    description: 'İşletmeniz büyüdüğünde sil baştan yazmanız gerekmeyen bir yapı kuruyoruz. Yeni bir özellik eklendiğinde mevcut sistem bozulmadan genişliyor, verileriniz düzenli kalıyor.',
+    practice: 'Tip kontrolü, planlı veritabanı şemaları ve düzenli yedekleme.'
   }
 ];
 

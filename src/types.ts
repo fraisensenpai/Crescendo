@@ -1,4 +1,4 @@
-export type ProjectType = 
+export type ProjectType =
   | 'Web Sitesi'
   | 'Özel Yazılım'
   | 'E-ticaret'
@@ -24,15 +24,38 @@ export interface ContactFormData {
 
 export interface ServiceItem {
   id: string;
-  code: string; // e.g. "01 / WEB"
+  code: string; // e.g. "01 / WEB SİTESİ"
   title: string;
   tagline: string;
   description: string;
-  architectureDetails: string[];
+  /** Hizmetin kapsamı — müşterinin anlayacağı dilde */
+  highlights: string[];
+  /** Somut teslim kalemleri */
   deliverables: string[];
   techStack: string[];
-  visualType: 'code-structure' | 'api-flow' | 'saas-modules' | 'design-tokens';
 }
+
+export interface ProjectPreviewSpec {
+  label: string;
+  value: string;
+}
+
+/** Kartlarda kullanılan teknik önizleme görseli (mevcut blueprint görsel dili). */
+export type ProjectPreview =
+  | {
+      kind: 'schematic';
+      headerLabel: string;
+      headerBadge: string;
+      rows: { label: string; value: string; width: number }[];
+      footerLeft: string;
+      footerRight: string;
+    }
+  | {
+      kind: 'module';
+      label: string;
+      headline: string;
+      note: string;
+    };
 
 export interface ProjectItem {
   id: string;
@@ -40,14 +63,14 @@ export interface ProjectItem {
   title: string;
   clientType: string;
   category: string;
-  year: string;
+  year?: string; // doğrulanmış tarih yoksa gösterilmez
   summary: string;
   challenge: string;
   architectureSolution: string;
   stack: string[];
   deliverables: string[];
-  specs: { label: string; value: string }[];
-  accentTone?: string;
+  specs: ProjectPreviewSpec[];
+  preview?: ProjectPreview;
 }
 
 export interface ProcessStep {
@@ -57,7 +80,7 @@ export interface ProcessStep {
   duration: string;
   description: string;
   deliverables: string[];
-  technicalAudit: string;
+  note: string;
 }
 
 export interface TechnologyItem {
