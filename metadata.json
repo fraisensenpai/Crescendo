@@ -1,0 +1,6 @@
+{
+  "name": "Crescendo Software",
+  "description": "Crescendo Software — Modern Web & Yazılım Çözümleri. Web siteleri, özel yazılımlar ve dijital ürünler geliştiren yazılım stüdyosu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

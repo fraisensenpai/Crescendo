@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --color-parchment: #F8F7F2;
+  --color-gold: #EDB96F;
+  --color-gold-hover: #DFAB5F;
+  --color-gold-light: #F4D3A1;
+  --color-slate-primary: #2B3446;
+  --color-slate-deep: #1A202C;
+  --color-slate-surface: #222B3A;
+  --color-slate-elevated: #2E384C;
+  --color-slate-border: #3D4A63;
+  --color-slate-border-subtle: #2D3749;
+  --color-slate-muted: #9BA7B7;
+
+  --font-display: "Syne", sans-serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+:root {
+  --brand-parchment: #F8F7F2;
+  --brand-gold: #EDB96F;
+  --brand-slate: #2B3446;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #171D27;
+  color: #F8F7F2;
+  overflow-x: hidden;
+}
+
+/* Custom Architectural Background Systems */
+.bg-tech-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(61, 74, 99, 0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(61, 74, 99, 0.18) 1px, transparent 1px);
+}
+
+.bg-tech-grid-dense {
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right, rgba(61, 74, 99, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(61, 74, 99, 0.12) 1px, transparent 1px);
+}
+
+.bg-dot-matrix {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(237, 185, 111, 0.14) 1px, transparent 1px);
+}
+
+.bg-blueprint-lines {
+  background-size: 32px 32px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(61, 74, 99, 0.08),
+    rgba(61, 74, 99, 0.08) 1px,
+    transparent 1px,
+    transparent 16px
+  );
+}
+
+/* Custom scrollbar matching Crescendo identity */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #171D27;
+}
+::-webkit-scrollbar-thumb {
+  background: #3D4A63;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #EDB96F;
+}
+
