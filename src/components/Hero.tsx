@@ -59,16 +59,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
           {/* SOL: Konumlandırma ve eylem çağrıları */}
           <div className="lg:col-span-7 min-w-0 flex flex-col items-start">
 
-            <div className="flex items-center gap-2.5 mb-6">
-              <span className="w-7 h-px bg-[#EDB96F]" aria-hidden="true"></span>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#EDB96F]">
-                Crescendo Software Studio
-              </span>
-            </div>
-
             <h1
               id="hero-main-headline"
-              className="font-['Syne'] text-[1.65rem] sm:text-[2.25rem] md:text-[2.6rem] lg:text-[3.1rem] xl:text-[3.35rem] font-extrabold tracking-tight text-[#F8F7F2] leading-[1.2] mb-6 max-w-2xl break-words text-balance"
+              className="font-['Syne'] text-[1.65rem] sm:text-[2.25rem] md:text-[2.6rem] lg:text-[3.1rem] xl:text-[3.35rem] font-extrabold tracking-tight text-[#F8F7F2] leading-[1.2] mb-6 mt-10 max-w-2xl break-words text-balance"
             >
               Fikirleri dijital{' '}
               <span className="text-[#EDB96F] underline decoration-[#EDB96F]/30 decoration-2 underline-offset-4">
