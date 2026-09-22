@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, ArrowDown, Terminal, Cpu, Layers, ShieldCheck, Activity } from 'lucide-react';
-import { STUDIO_CONFIG } from '../data/studioData.ts';
+import { ArrowUpRight, ArrowDown, Terminal, Layers, ShieldCheck, Activity } from 'lucide-react';
 
 interface HeroProps {
   onOpenContact: () => void;

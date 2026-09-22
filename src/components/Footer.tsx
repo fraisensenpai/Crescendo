@@ -1,6 +1,7 @@
 import React from 'react';
-import { ArrowUp, ArrowUpRight } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import { STUDIO_CONFIG } from '../data/studioData.ts';
+import brandLogo from '../../C.png';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -20,12 +21,13 @@ export const Footer: React.FC = () => {
           {/* Brand Info */}
           <div className="md:col-span-6 flex flex-col items-start">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-[#2B3446] border border-[#3D4A63] flex items-end justify-center p-1.5 gap-0.5">
-                <span className="w-1 bg-[#EDB96F]/40 h-2"></span>
-                <span className="w-1 bg-[#EDB96F]/70 h-3.5"></span>
-                <span className="w-1 bg-[#EDB96F] h-4.5"></span>
-                <span className="w-1 bg-[#F8F7F2] h-5.5"></span>
-              </div>
+              <img
+                src={brandLogo}
+                alt="Crescendo Software logosu"
+                width={32}
+                height={32}
+                className="w-8 h-8 object-cover border border-[#3D4A63]"
+              />
               <span className="font-['Syne'] font-extrabold text-xl tracking-tight text-[#F8F7F2]">
                 CRESCENDO
               </span>

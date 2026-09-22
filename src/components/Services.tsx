@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, CheckCircle2, Code2, Database, Layout, Sparkles, Terminal, Cpu } from 'lucide-react';
+import { ArrowUpRight, Database } from 'lucide-react';
 import { SERVICES_DATA } from '../data/studioData.ts';
 
 interface ServicesProps {

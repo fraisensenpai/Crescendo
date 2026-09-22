@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Zap, MessageSquare, Terminal, X, Check } from 'lucide-react';
+import { X, Check } from 'lucide-react';
 import { PHILOSOPHY_DATA } from '../data/studioData.ts';
 
 export const WhyCrescendo: React.FC = () => {

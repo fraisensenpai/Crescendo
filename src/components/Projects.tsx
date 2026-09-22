@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, Layers, Eye, Terminal, Check } from 'lucide-react';
+import { ArrowUpRight, Eye } from 'lucide-react';
 import { PROJECTS_DATA } from '../data/studioData.ts';
 import { ProjectItem } from '../types.ts';
 import { ProjectModal } from './ProjectModal.tsx';

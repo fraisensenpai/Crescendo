@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Terminal, Cpu, Database, Layout, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { Terminal } from 'lucide-react';
 import { TECH_STACK_DATA } from '../data/studioData.ts';
 import { TechnologyItem } from '../types.ts';
 

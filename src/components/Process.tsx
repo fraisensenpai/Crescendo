@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle2, ArrowRight, Clock, ShieldCheck, ChevronRight } from 'lucide-react';
+import { Clock } from 'lucide-react';
 import { PROCESS_DATA } from '../data/studioData.ts';
 
 export const Process: React.FC = () => {

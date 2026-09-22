@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { STUDIO_CONFIG } from '../data/studioData.ts';
+import brandLogo from '../../C.png';
 
 interface NavbarProps {
   onOpenContact: () => void;
@@ -43,13 +44,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
           id="nav-brand-logo"
           className="group flex items-center gap-3 select-none"
         >
-          {/* Custom Architectural Brand Mark: Crescendo stepped geometric vectors */}
-          <div className="w-9 h-9 bg-[#2B3446] border border-[#3D4A63] flex items-end justify-center p-1.5 gap-0.5 group-hover:border-[#EDB96F] transition-colors">
-            <span className="w-1 bg-[#EDB96F]/40 h-2 group-hover:bg-[#EDB96F] transition-all duration-300"></span>
-            <span className="w-1 bg-[#EDB96F]/70 h-3.5 group-hover:bg-[#EDB96F] transition-all duration-300"></span>
-            <span className="w-1 bg-[#EDB96F] h-5 transition-all duration-300"></span>
-            <span className="w-1 bg-[#F8F7F2] h-6 transition-all duration-300"></span>
-          </div>
+          {/* Official Crescendo brand logo (project root: C.png) */}
+          <img
+            src={brandLogo}
+            alt="Crescendo Software logosu"
+            width={36}
+            height={36}
+            className="w-9 h-9 object-cover border border-[#3D4A63] group-hover:border-[#EDB96F] transition-colors"
+          />
 
           <div className="flex flex-col">
             <span className="font-['Syne'] font-bold text-lg tracking-tight text-[#F8F7F2] leading-none group-hover:text-[#EDB96F] transition-colors">

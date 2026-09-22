@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Mail, Copy, Check, Send, ArrowUpRight, MessageSquare, Terminal, AlertCircle } from 'lucide-react';
+import { Copy, Check, Send, Terminal, AlertCircle, Loader2 } from 'lucide-react';
 import { STUDIO_CONFIG, PROJECT_TYPES, BUDGET_RANGES } from '../data/studioData.ts';
-import { ContactFormData, ProjectType, BudgetRange } from '../types.ts';
+import { ContactFormData, ProjectType } from '../types.ts';
 
 interface ContactProps {
   initialProjectType?: ProjectType;
@@ -19,6 +19,8 @@ export const Contact: React.FC<ContactProps> = ({ initialProjectType }) => {
 
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [submissionChannel, setSubmissionChannel] = useState<'supabase' | 'mailto' | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleCopyEmail = async () => {
@@ -31,16 +33,8 @@ export const Contact: React.FC<ContactProps> = ({ initialProjectType }) => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setErrorMessage('');
-
-    if (!formData.fullName.trim() || !formData.email.trim() || !formData.projectDetails.trim()) {
-      setErrorMessage('Lütfen Ad Soyad, E-posta ve Proje Açıklaması alanlarını doldurunuz.');
-      return;
-    }
-
-    // Prepare mailto link with structured Turkish email subject & body
+  // Supabase yapılandırılmadıysa site çalışmaya devam etsin: başvuru doğrudan e-posta istemcisine aktarılır.
+  const openMailtoDraft = () => {
     const subject = encodeURIComponent(`[Yeni Proje Başvurusu] ${formData.projectType} — ${formData.fullName}`);
     const body = encodeURIComponent(
 `Merhaba Crescendo Software Ekibi,
@@ -60,11 +54,71 @@ ${formData.projectDetails}
 Bu mesaj crescendosoftware.com üzerinden oluşturulmuştur.`
     );
 
-    const mailtoUrl = `mailto:${STUDIO_CONFIG.email}?subject=${subject}&body=${body}`;
-
-    // Trigger user's email client
-    window.location.href = mailtoUrl;
+    window.location.href = `mailto:${STUDIO_CONFIG.email}?subject=${subject}&body=${body}`;
+    setSubmissionChannel('mailto');
     setFormSubmitted(true);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+    setErrorMessage('');
+
+    const fullName = formData.fullName.trim();
+    const email = formData.email.trim();
+    const projectDetails = formData.projectDetails.trim();
+
+    if (!fullName || !email || !projectDetails) {
+      setErrorMessage('Lütfen Ad Soyad, E-posta ve Proje Açıklaması alanlarını doldurunuz.');
+      return;
+    }
+
+    if (fullName.length < 2) {
+      setErrorMessage('Lütfen ad ve soyadınızı eksiksiz girin.');
+      return;
+    }
+
+    if (projectDetails.length < 10) {
+      setErrorMessage('Lütfen projenizi ve hedeflerinizi en az 10 karakterle özetleyin.');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Supabase istemcisi yalnızca form gerçekten gönderildiğinde yüklenir;
+      // böylece ilk sayfa açılış paketi şişmez.
+      const { getSupabase, isSupabaseConfigured } = await import('../lib/supabase.ts');
+
+      // Yapılandırma yoksa (ör. ortam değişkenleri tanımlanmamışsa) e-posta istemcisine düş.
+      if (!isSupabaseConfigured) {
+        openMailtoDraft();
+        return;
+      }
+
+      const { error } = await getSupabase()
+        .from('project_inquiries')
+        .insert({
+          full_name: fullName,
+          email,
+          company: formData.company.trim() || null,
+          project_type: formData.projectType,
+          budget_range: formData.budgetRange,
+          project_details: projectDetails,
+        });
+
+      if (error) throw error;
+
+      setSubmissionChannel('supabase');
+      setFormSubmitted(true);
+    } catch (err) {
+      console.error('Proje başvurusu kaydedilemedi', err);
+      setErrorMessage(
+        `Başvurunuz şu anda kaydedilemedi. Lütfen tekrar deneyin veya doğrudan ${STUDIO_CONFIG.email} adresine yazın.`
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -191,15 +245,24 @@ Bu mesaj crescendosoftware.com üzerinden oluşturulmuştur.`
                   ✓
                 </div>
                 <h3 className="font-['Syne'] text-2xl font-bold text-[#F8F7F2]">
-                  E-posta İstemciniz Başlatıldı
+                  {submissionChannel === 'supabase' ? 'Başvurunuz Alındı' : 'E-posta İstemciniz Başlatıldı'}
                 </h3>
-                <p className="text-sm text-[#9BA7B7] max-w-md mx-auto leading-relaxed">
-                  Proje bilgileriniz yapılandırılmış bir taslak olarak hazırlandı. Eğer e-posta programınız otomatik açılmadıysa, doğrudan <span className="text-[#EDB96F] font-mono">{STUDIO_CONFIG.email}</span> adresine yazabilirsiniz.
-                </p>
+                {submissionChannel === 'supabase' ? (
+                  <p className="text-sm text-[#9BA7B7] max-w-md mx-auto leading-relaxed">
+                    Proje detaylarınız güvenli şekilde kaydedildi. Çekirdek ekibimiz başvurunuzu inceleyip size dönüş yapacak. Yanıt süresi taahhüdümüz: <span className="text-[#EDB96F] font-mono">{STUDIO_CONFIG.responseSLA}</span>.
+                  </p>
+                ) : (
+                  <p className="text-sm text-[#9BA7B7] max-w-md mx-auto leading-relaxed">
+                    Proje bilgileriniz yapılandırılmış bir taslak olarak hazırlandı. Eğer e-posta programınız otomatik açılmadıysa, doğrudan <span className="text-[#EDB96F] font-mono">{STUDIO_CONFIG.email}</span> adresine yazabilirsiniz.
+                  </p>
+                )}
                 <div className="pt-4">
                   <button
                     type="button"
-                    onClick={() => setFormSubmitted(false)}
+                    onClick={() => {
+                      setFormSubmitted(false);
+                      setSubmissionChannel(null);
+                    }}
                     className="px-5 py-2 bg-[#222B3A] border border-[#3D4A63] text-xs font-mono text-[#F8F7F2] hover:border-[#EDB96F]"
                   >
                     Yeni Başvuru Doldur
@@ -222,6 +285,7 @@ Bu mesaj crescendosoftware.com üzerinden oluşturulmuştur.`
                       type="text"
                       id="contact-fullName"
                       required
+                      maxLength={120}
                       placeholder="Örn. Mehmet Yılmaz"
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
@@ -240,6 +304,7 @@ Bu mesaj crescendosoftware.com üzerinden oluşturulmuştur.`
                       type="email"
                       id="contact-email"
                       required
+                      maxLength={254}
                       placeholder="adiniz@sirketiniz.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -259,6 +324,7 @@ Bu mesaj crescendosoftware.com üzerinden oluşturulmuştur.`
                   <input
                     type="text"
                     id="contact-company"
+                    maxLength={160}
                     placeholder="Örn. Nova Lojistik A.Ş."
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
@@ -331,6 +397,7 @@ Bu mesaj crescendosoftware.com üzerinden oluşturulmuştur.`
                     id="contact-projectDetails"
                     required
                     rows={4}
+                    maxLength={5000}
                     placeholder="İhtiyacınız olan web sitesi veya yazılımın temel özelliklerini, hedef kitlenizi ve varsa teslim takvimi hedefinizi kısaca açıklayınız..."
                     value={formData.projectDetails}
                     onChange={(e) => setFormData({ ...formData, projectDetails: e.target.value })}
@@ -343,10 +410,12 @@ Bu mesaj crescendosoftware.com üzerinden oluşturulmuştur.`
                   <button
                     type="submit"
                     id="contact-form-submit-btn"
-                    className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#EDB96F] hover:bg-[#DFAB5F] text-[#2B3446] font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-md active:translate-y-0.5"
+                    disabled={isSubmitting}
+                    aria-busy={isSubmitting}
+                    className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#EDB96F] hover:bg-[#DFAB5F] text-[#2B3446] font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-md active:translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <span>Projeyi İletin & İnceleme Başlatın</span>
-                    <Send className="w-4 h-4" />
+                    <span>{isSubmitting ? 'Başvurunuz Kaydediliyor...' : 'Projeyi İletin & İnceleme Başlatın'}</span>
+                    {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                   </button>
                   <p className="font-mono text-[10px] text-[#9BA7B7] text-center mt-2.5">
                     * Bilgileriniz gizlilikle korunur. Spam yok, doğrudan stüdyo iletişimi.

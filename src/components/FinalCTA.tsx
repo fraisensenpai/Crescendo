@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, CheckCircle2, MessageSquare, Terminal } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { STUDIO_CONFIG } from '../data/studioData.ts';
 
 interface FinalCTAProps {
