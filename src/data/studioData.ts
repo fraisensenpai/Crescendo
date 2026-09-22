@@ -16,8 +16,9 @@ export const SERVICES_DATA: ServiceItem[] = [
     code: '01 / WEB SİTESİ',
     title: 'Web Sitesi Tasarımı & Geliştirme',
     tagline: 'Hazır tema satın almadan, işinize göre sıfırdan tasarlanıp kodlanan web siteleri.',
-    description: 'İşletmenizi internette doğru şekilde temsil eden; hızlı açılan, telefonda da masaüstünde de düzgün görünen siteler geliştiriyoruz. Arama motorlarında bulunabilmeniz için gereken teknik temeli kuruyor, içeriğinizi sonradan rahatça güncelleyebileceğiniz bir yapı bırakıyoruz.',
+    description: 'İşletmenizi internette doğru şekilde temsil eden; hızlı açılan, telefonda da masaüstünde de düzgün görünen siteler geliştiriyoruz. Arama motorlarında bulunabilmeniz için gereken teknik temeli kuruyor, içeriğinizi sonradan rahatça güncelleyebileceğiniz bir yapı bırakıyoruz. Sade kapsamlı sitelerde tasarımdan yayına kadar geçen süre 24 saate kadar inebilir.',
     highlights: [
+      'Hızlı teslim: kapsamı net olan siteler çoğu zaman 24 saat içinde yayında',
       'Kurumsal tanıtım siteleri, ürün-hizmet katalogları ve açılış sayfaları',
       'Telefon, tablet ve masaüstünde sorunsuz görünen tasarım',
       'Arama motoru için teknik düzen: sayfa başlıkları, site haritası, yapısal veri',
@@ -212,8 +213,8 @@ export const PROCESS_DATA: ProcessStep[] = [
     step: '01',
     title: 'Keşif & Kapsam Belirleme',
     phaseLabel: 'MİMARİ ÖNCESİ ANALİZ',
-    duration: '3 — 5 Gün',
-    description: 'Projenin hedeflerini, hedef kitlesini ve teknik sınırlarını netleştiriyoruz. Nelerin gerçekten yapılması gerektiğini, nelerin gereksiz maliyet ve zaman kaybı olacağını dürüstçe masaya yatırıyoruz.',
+    duration: 'Aynı gün',
+    description: 'Projenin hedeflerini, hedef kitlesini ve teknik sınırlarını netleştiriyoruz. Nelerin gerçekten yapılması gerektiğini, nelerin gereksiz maliyet ve zaman kaybı olacağını dürüstçe masaya yatırıyoruz. Kapsamı sade işlerde bu aşama çoğu zaman aynı gün içinde tamamlanır.',
     deliverables: [
       'Ayrıntılı Teknik İhtiyaç & Kapsam Dokümanı',
       'Teknoloji yığını ve mimari yol haritası kararı',
@@ -225,7 +226,7 @@ export const PROCESS_DATA: ProcessStep[] = [
     step: '02',
     title: 'Arayüz & Sistem Mimarisi',
     phaseLabel: 'TASARIM & VERİ MODELLEME',
-    duration: '1 — 2 Hafta',
+    duration: '1 — 2 gün',
     description: 'Estetik ile mühendisliği birleştiriyoruz. Kullanıcıların takılmadan gezineceği ekran akışlarını, veritabanı şemasını ve bileşen tasarım sistemini henüz kod yazmadan önce eksiksiz kurguluyoruz.',
     deliverables: [
       'Tıklanabilir yüksek sadakatli ekran prototipleri',
@@ -238,21 +239,21 @@ export const PROCESS_DATA: ProcessStep[] = [
     step: '03',
     title: 'Geliştirme & Performans Testi',
     phaseLabel: 'TEMİZ KOD & İNŞA SÜRECİ',
-    duration: '2 — 4 Hafta',
-    description: 'Belirlenen mimariye sadık kalarak, modüler ve belgelenmiş kod üretiyoruz. Her özelliği aşama aşama test ortamında sizinle paylaşıyor; geri bildirimlerinizi süreç içine dahil ediyoruz.',
+    duration: '1 — 3 gün',
+    description: 'Belirlenen mimariye sadık kalarak modüler ve belgelenmiş kod üretiyoruz. Süreçte aracı katman olmadığı için geri bildirimlerinizi aynı gün koda dönüştürebiliyoruz; her özellik size çalışan bir bağlantı olarak gösterilir.',
     deliverables: [
       'Erişilebilir, modüler ve belgelenmiş kaynak kod tabanı',
       'Mobil, tablet ve masaüstü çapraz tarayıcı testleri',
       'Güvenlik ve Core Web Vitals performans denetimleri'
     ],
-    note: 'Her hafta çalışan bir test bağlantısı paylaşılır; ilerlemeyi kendiniz görürsünüz.'
+    note: 'Çalışan bir test bağlantısı paylaşılır; ilerlemeyi kendiniz görürsünüz.'
   },
   {
     step: '04',
     title: 'Yayına Alma & Destek',
     phaseLabel: 'CANLIYA GEÇİŞ & SÜREKLİLİK',
-    duration: 'Kesintisiz',
-    description: 'Ürününüzü sıfır kesintiyle bulut sunucularına taşıyor, alan adı ve SSL konfigürasyonlarını tamamlıyoruz. Yayına alındıktan sonra da sisteminizi yalnız bırakmıyor, teknik destek sunuyoruz.',
+    duration: 'Aynı gün',
+    description: 'Ürününüzü bulut sunucularına taşıyor, alan adı ve SSL ayarlarını tamamlıyoruz. Yayına alındıktan sonra da sisteminizi yalnız bırakmıyor, teknik destek sunuyoruz. Web sitesi projelerinde bu adım genellikle aynı gün içinde tamamlanır.',
     deliverables: [
       'Bulut altyapısı (Edge CDN, SSL, DNS) tam kurulumu',
       'Eğitim ve yönetim paneli kullanım kılavuzu',
@@ -373,9 +374,10 @@ export const PROJECT_TYPES: ProjectType[] = [
 ];
 
 export const BUDGET_RANGES: BudgetRange[] = [
-  '25.000 TL – 50.000 TL',
-  '50.000 TL – 100.000 TL',
-  '100.000 TL – 250.000 TL',
-  '250.000 TL+',
+  '0 ₺ – 500 ₺',
+  '500 ₺ – 1.000 ₺',
+  '1.000 ₺ – 5.000 ₺',
+  '5.000 ₺ – 10.000 ₺',
+  '10.000 ₺+',
   'Henüz Belirlenmedi'
 ];

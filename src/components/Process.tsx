@@ -14,10 +14,10 @@ export const Process: React.FC = () => {
           eyebrow="04 — Çalışma şeklimiz"
           title={
             <>
-              Sürpriz maliyet yok, <span className="text-[#EDB96F]">planlı ilerleme.</span>
+              Sürpriz maliyet yok, <span className="text-[#EDB96F]">hızlı ilerleme.</span>
             </>
           }
-          note="Her aşamanın çıktısı ve onay kriteri baştan bellidir. Ne zaman ne alacağınızı bilirsiniz."
+          note="Web siteleri çoğu zaman 24 saat içinde yayına alınır; kapsam büyüdükçe süre 1 haftaya çıkar. Her aşamanın çıktısı ve onay kriteri baştan bellidir."
         />
 
         {/* Aşama seçimi */}

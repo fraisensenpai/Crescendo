@@ -7,10 +7,11 @@ export type ProjectType =
   | 'Diğer';
 
 export type BudgetRange =
-  | '25.000 TL – 50.000 TL'
-  | '50.000 TL – 100.000 TL'
-  | '100.000 TL – 250.000 TL'
-  | '250.000 TL+'
+  | '0 ₺ – 500 ₺'
+  | '500 ₺ – 1.000 ₺'
+  | '1.000 ₺ – 5.000 ₺'
+  | '5.000 ₺ – 10.000 ₺'
+  | '10.000 ₺+'
   | 'Henüz Belirlenmedi';
 
 export interface ContactFormData {

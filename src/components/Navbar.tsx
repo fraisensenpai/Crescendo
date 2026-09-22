@@ -62,11 +62,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
           />
 
           <span className="flex flex-col">
-            <span className="font-['Syne'] font-bold text-lg tracking-tight text-[#F8F7F2] leading-none">
-              CRESCENDO
+            <span className="font-['Times_New_Roman',_Times,_serif] font-bold text-lg tracking-tight text-[#F8F7F2] leading-none">
+              Crescendo
             </span>
-            <span className="text-[10px] tracking-[0.18em] text-[#9BA7B7] uppercase mt-1">
-              Software Studio
+            <span className="text-[10px] tracking-[0.18em] text-[#9BA7B7] mt-1">
+              Yazılım Geliştirme
             </span>
           </span>
         </a>

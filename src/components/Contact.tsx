@@ -17,7 +17,7 @@ export const Contact: React.FC<ContactProps> = ({ initialProjectType }) => {
     email: '',
     company: '',
     projectType: initialProjectType || 'Web Sitesi',
-    budgetRange: '50.000 TL – 100.000 TL',
+    budgetRange: '1.000 ₺ – 5.000 ₺',
     projectDetails: ''
   });
 
